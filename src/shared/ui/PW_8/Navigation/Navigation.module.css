@@ -1,0 +1,17 @@
+.nav {
+  padding: '10px';
+  background: '#333';
+  color: 'white';
+}
+
+.navLink {
+  font-family: 'Montserrat-Regular';
+  margin-right: 15px;
+  color: black;
+}
+
+.active {
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: underline;
+}

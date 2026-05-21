@@ -1,0 +1,6 @@
+.wrapper-login {
+  display: flex;
+  gap: 6px;
+
+  border: none;
+}

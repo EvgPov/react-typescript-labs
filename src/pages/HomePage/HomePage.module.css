@@ -1,0 +1,13 @@
+.homePage_wrapper {
+  font-family: 'Montserrat-Regular';
+  padding: 20px;
+}
+.title_users {
+  margin-top: 30px;
+}
+.links_users {
+  font-family: 'Montserrat-Regular';
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

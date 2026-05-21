@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Montserrat-Regular';
+
+  padding: 16px 24px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f8f9fa;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.link {
+  text-decoration: none;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  background-color: #e9ecef;
+  color: #0066cc;
+}
+
+.link.active {
+  font-weight: bold;
+  color: #0066cc;
+  background-color: #e3f0ff;
+}
+
+.div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.info {
+  font-size: 15px;
+  color: #333;
+}
+
+.button {
+  width: 150px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0066cc;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-family: 'Montserrat-Regular';
+  font-size: 0.9rem;
+  color: white;
+
+  text-transform: uppercase;
+  transition: letter-spacing 0.3s ease;
+  transition: background 0.2s;
+
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+
+  margin-inline-start: 10px;
+}
+
+.button:hover {
+  background-color: #468cf5;
+  transform: scale(110%);
+  transition:
+    background-color 0.7s,
+    transform 0.7s;
+}

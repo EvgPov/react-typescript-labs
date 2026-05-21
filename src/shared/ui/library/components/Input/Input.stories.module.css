@@ -1,0 +1,9 @@
+.wrapper {
+  font-family: var(--font-primary);
+  width: 300px;
+}
+.current_value {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #666;
+}

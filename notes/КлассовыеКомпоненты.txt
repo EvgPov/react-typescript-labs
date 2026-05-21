@@ -1,0 +1,183 @@
+Жизненный цикл компонента в React - это последовательность этапов (фаз), через которые проходит компонент от момента его создания до удаления из DOM.
+
+Классовые компоненты - это ES6-класс, наследующий от React.Component (или React.PureComponent). Обязательный метод - render(), который возвращает JSX.
+
+- классические методы жизненного цикла (class cpmponenet)
+
+Фазы:
+
+Mounting (создание)
+1. constructor()
+2. static getDerivedStateFromProps (редко)
+3. render()
+4. componentDidMount() 
+
+Updating(обновление)
+1. static getDerivedStateFromProps (редко)
+2. shouldCmponentUpdate() -> memo / PureComponent
+3. render()
+4. getSnapshotBeforeUpdate() (редко, для измерений до мутации DOM)
+5. componentDidUpdate(prevProps, prevState, snapshot)
+
+Unmounting (удаление)
+componentwillUnmount() <- cleanup
+
+Error Handling (очень редко)
+1. static getDerivedStateFromError()
+2. componentDidCatch()
+
+- жизненный цикл в функциональных компонентах
+
+1. Монтирование (первый рендер). Срабатывает после первого рендера и вставки в DOM
+
+useEffect(() => {}, [])
+
+Аналог в классах ->  componentDidMount()
+
+2. Обновление (изменение зависимостей). Срабатывает после каждого рендера, если изменились зависимости.
+
+useEffect(() => {}, [dep1, dep2])
+
+Аналог в классах ->  componentDidUpdate()
+
+3. Разминирование. Срабатывает перед удалением компонента из DOM.
+
+useEffect(() => {
+return () => {}
+}, [])
+
+Аналог в классах -> componentwillUnmount()
+
+4. Чтение layout до показа браузером. Срабатывает синхронно после рендера, но до paint.
+
+uselayoutEffect(() => {}, [])
+
+Аналог в классах -> getSnapshotbeforeUpdate() +  componentDidUpdate()
+
+5. Очень редкий случай ( CSS-in-JS ). Срабатывает до мутации DOM(вставки стилей)
+
+useIndertionEffect (React 18+)
+
+6. Один раз при монтировании (альтернатива)
+
+useEffect с пустым return + флаг
+
+Жизненный цикл имеет три основных фазы:
+1. Mounting - компонент создается и вставляется в DOM.
+2. Updating - компонент перерисовывает из-за изменения props или state.
+3. Unmounting - компонент удаляется из DOM.
+
+Основные методы жизненного цикла:
+1. componentDidMount - запускается один раз сразу после первого рендера и вставки в DOM.
+
+useEffect(() => {}, []) (без cleanup)
+
+- загрузка данных с сервера
+- подписка на внешние события (WebSocket, EventSource)
+- запуск таймеров/анимаций
+
+2. componentDidUpdate(prevprops, prevState, snapshot) - запускается после каждого обновления (кроме первого рендера). Важно сравнивать предыдущие и текущие значения, чтобы не делать лишнюю работу.
+
+useEffect(()=> {}, [deps]) useEffect(() => {}, []) (без cleanup)
+
+3. componentWillUnmount - запускается прямо перед удалением компонента из DOM.
+
+Cleanup-функция внутри useEffect
+
+Очистка ресурсов:
+- clearInterval/ clearTi,eout
+- отписка от WebSocket /  EventEmitter
+- удаление глобальных слушателей событий
+
+Чистый в react означает что:
+- детерминированность: пр одинаковых props/state -> одинаковый JSX
+- отсутствие побочных эффектов в рендере: никаких запросов, мутаций, подписок внутри тела компонента.
+- оптимизация: react может 
+Пропустить перерисовал, если входные данные не изменились (shadow comparison).
+
+
+React.memo - это higher-order component (HOC), который позволяет пропускает перерисовал функционального компонента, если его props не изменились (по shallow- сравнению)
+
+
+import { memo } from 'react';
+
+const MyComponent = memo(function MyComponent({ name, age }) {
+  console.log("рендер MyComponent");
+  return <div>{name} — {age} лет</div>;
+});
+
+// или стрелочная функция
+const Greeting = memo(({ name }) => {
+  return <h1>Привет, {name}!</h1>;
+});
+
+По умолчанию React.memo использует shallow equal (поверхностное сравнение):
+
+Object.is(prevProp, nextProp)   // для каждого пропа
+
+То есть:
+- примитивы (числа, строки, boolean) - сравниваются по значнению
+- объекты, массивы, функции - сравниваются по ссылке
+Если хотя бы Олин про изменился по ссылке - > перерендер
+
+
+React.PureComponent - это базовый класс для классовых компонентов, тъкорыф автоматически реализует оптимизацию перерисовок через поверхностное сравнение props и state.
+
+
+class Regular extends React.Component {
+  // всегда рендерится при изменении родителя или своих props/state
+}
+
+
+Pure-версия:
+
+
+import React from 'react';
+
+class PureChild extends React.PureComponent {
+  render() {
+    console.log('рендер PureChild');
+    return <div>{this.props.value}</div>;
+  }
+}
+
+React автоматически переопределяет shouldComponentUpdate():
+
+Выполняет shallow equal (поверхностное сравнение)
+prevProps[key] === nextProps[key] для каждого ключа
+prevState[key] === nextState[key]
+
+Если все значения равны по ссылке → рендер пропускается
+
+Если в props приходят новые объекты/массивы/функции при каждом рендере родителя - memo/PureComponent не поможет. Нужно стабилизировать ссылки через useMemo/useCallback.
+
+Error Boundary - это специальный компонент, который ловит JS-ошибки в своем дочернем дереве во время рендеринга, в методах жизненного цикла и в конструкторах, логирует их и показывает fallback UI (запасной интерфейс) вместо сломанного дерева компонентов.
+
+- только классовые компоненты могут быть Error Boundary
+- должны реализовать один или оба статических метода:
+	- static getDerivedStateFromError(error) -> обновить state -> показать fallback
+	получить состояние из ошибки: когда в дочернем компоненте (или в любом его потомке) происходит ошибка во время рендеринг, react вызывает этот статический метод ДО того, как браузер что-либо обрисует. Задача метода одна:
+		- вернуть объект, к оный react сольет в state текущего компонента (Error Boundary)
+		- обычно возвращают что-то вроде {hasError: true} или {error: error}
+После этого react перерендерит компонент уже с новым состоянием -> и вы можете показать запасной интерфейс (fallback UI) вместо сломанного дерева.
+		
+	- componentDidCatch(error, info) -> логирование, отправка в Sentry / Bugsnag и т. д.
+
+Ловят:
+- ошибки в render()
+- ошибки в хуках (useState, useEffect, etc)
+- ошибки в конструкторах и lifecycle- методах
+
+Не ловят:
+- ошибки в обработках событий (onClick, setTimeout, Promise.then, fetch)
+- ошибки в самом Error Boundary
+- ошибки на сервере (SSR)
+- Асинхронные ошибки вне рендера (для них try/catch или react-error-boundary + useErrorBoundary)
+
+
+
+
+
+
+
+

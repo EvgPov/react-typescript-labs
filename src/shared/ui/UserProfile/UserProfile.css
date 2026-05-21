@@ -1,0 +1,21 @@
+.wrapper-user {
+  width: 700px;
+  font-family: 'Montserrat-Regular';
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 20px;
+  margin: 15px;
+
+  color: #2c3e50;
+
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  margin: 15px;
+  font-size: 1.2rem;
+  font-family: 'Montserrat-Bold';
+}

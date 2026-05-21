@@ -1,0 +1,29 @@
+.wrapper-border-up {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  border-top: 2px solid rgb(192, 191, 191);
+  border-radius: 3px;
+}
+.span {
+  font-family: 'Montserrat-Bold';
+}
+.label {
+  font-family: 'Montserrat-Bold';
+  /* white-space: nowrap; */
+}
+.field {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
+  color: #111827;
+  background-color: white;
+  transition: all 0.15s ease;
+
+  margin-bottom: 0.5rem;
+}

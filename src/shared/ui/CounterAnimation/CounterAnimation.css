@@ -1,0 +1,146 @@
+.wrapper {
+  width: 700px;
+  font-family: 'Montserrat-Regular';
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 20px;
+  margin: 15px;
+
+  color: #2c3e50;
+
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  font-family: 'Montserrat-Bold';
+  font-size: 1.8rem;
+  margin-block-end: 45px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.button {
+  background: #0066cc;
+  color: white;
+
+  border: none;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-family: 'Montserrat-Regular';
+  font-size: 0.9rem;
+
+  width: 150px;
+  height: 50px;
+
+  text-transform: uppercase;
+  transition: letter-spacing 0.3s ease;
+  transition: background 0.2s;
+
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
+
+  margin-block-end: 10px;
+  /* padding: 0.65rem 1.25rem; */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button:hover {
+  background-color: #468cf5;
+  transform: scale(110%);
+  transition:
+    background-color 0.7s,
+    transform 0.7s;
+}
+
+.fs {
+  font-size: 1.9rem;
+}
+.number-display {
+  position: relative;
+  width: 200px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.current {
+  transition:
+    transform 0.6s ease,
+    opacity 0.6s ease;
+}
+
+.previous {
+  position: absolute;
+  font-size: 1.8rem;
+  color: #888;
+  opacity: 0;
+  transition: all 0.7s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.up .current {
+  animation: slideUp 0.6s forwards;
+}
+
+.up .previous {
+  opacity: 1;
+  transform: translate(-50%, -150%);
+}
+
+.down .current {
+  animation: slideDown 0.6s forwards;
+}
+
+.down .previous {
+  opacity: 1;
+  transform: translate(-50%, 50%);
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.status {
+  color: #555;
+  font-size: 1.5rem;
+  margin-block-start: 45px;
+}

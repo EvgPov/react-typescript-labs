@@ -1,0 +1,20 @@
+li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  list-style: none;
+}
+li span {
+  flex: 1;
+  cursor: pointer;
+}
+.button-small {
+  width: 100px;
+}
+.todo-add {
+  display: flex;
+  gap: 6px;
+
+  border: none;
+}

@@ -1,0 +1,22 @@
+.div {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  font-family: 'Montserrat-Regular';
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.td_label {
+  font-family: 'Montserrat-Bold';
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px 20px 10px 20px;
+}
+
+.td_value {
+  border: 1px solid #ddd;
+  padding: 10px 20px 10px 20px;
+}
