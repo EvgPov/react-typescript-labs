@@ -1,74 +1,36 @@
-# React + TypeScript + Vite
+# React + TypeScript Labs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Сборник лабораторных работ по React и TypeScript, выполненных в рамках курса Hexlet.
 
-Currently, two official plugins are available:
+### О проекте
+В репозитории собраны практические работы по основным темам React:
+- Компоненты и пропсы
+- Hooks (useState, useEffect, useReducer, useContext и др.)
+- Context API
+- React Router v6 + Protected Routes
+- Формы и управляемые компоненты
+- HOC, Portals, Refs, Error Boundary
+- Оптимизация рендера
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Выполненные практические работы
 
-## React Compiler
+- **PW 2** — Галерея с карточками
+- **PW 3** — Работа с формами, валидация, Like Button
+- **PW 4** — Классовые компоненты, хуки, Error Boundary, оптимизация
+- **PW 5** — Создание UI-библиотеки (Button, Input, Alert)
+- **PW 6** — Render Analysis, Refs, Portals, HOC, Synthetic Events
+- **PW 7** — Context API, useReducer (Todo), авторизация через Context
+- **PW 9** — React Router v6, Protected Routes, ролевая модель
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Стек технологий
+- React 18
+- TypeScript
+- Vite
+- React Router v6
+- Context API + useReducer
+- CSS Modules
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-# react-typescript-labs
+### Как запустить проект
+```bash
+npm install
+npm run dev
